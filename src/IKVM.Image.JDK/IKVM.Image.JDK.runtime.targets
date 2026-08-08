@@ -62,6 +62,12 @@
             <PublishItemGroup>PublishIkvmImageBinItem</PublishItemGroup>
             <PublishItemMetadata>TargetFramework=net8.0;RuntimeIdentifier=$(ImageRuntimeIdentifier)</PublishItemMetadata>
         </PublishProjectReference>
+        <PublishProjectReference Include="@(BinProject)" Condition="$(SupportedImageTargetFrameworks.Contains(';net10.0;'))">
+            <SetTargetFramework>TargetFramework=net10.0</SetTargetFramework>
+            <SetRuntimeIdentifier>RuntimeIdentifier=$(ImageRuntimeIdentifier)</SetRuntimeIdentifier>
+            <PublishItemGroup>PublishIkvmImageBinItem</PublishItemGroup>
+            <PublishItemMetadata>TargetFramework=net10.0;RuntimeIdentifier=$(ImageRuntimeIdentifier)</PublishItemMetadata>
+        </PublishProjectReference>
     </ItemGroup>
 
     <Target Name="CollectIkvmImageBinItems" BeforeTargets="ExpandIkvmImageItems" DependsOnTargets="CollectPublishProjectReferenceItems;GetPublishProjectReferenceOutputItems">
